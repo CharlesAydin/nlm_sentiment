@@ -26,8 +26,8 @@ graph.add_node(Embedding(2048, 2, input_length=1), name='emotion_embeddings', in
 graph.add_node(Flatten(), input='emotion_embeddings', name='flatemot')
 
 
-graph.add_input(name='word_input', input_shape=((7,)), dtype='int')
-graph.add_node(Embedding(numwords, 128, input_length=7), input='word_input', name='word_embeddings')
+graph.add_input(name='word_input', input_shape=((16,)), dtype='int')
+graph.add_node(Embedding(numwords, 128, input_length=16), input='word_input', name='word_embeddings')
 graph.add_node(Flatten(), input='word_embeddings', name='flatwords')
 
 graph.add_node(Dense(1024), inputs=['flatemot', 'flatwords'], name='dense1')
@@ -47,13 +47,13 @@ for e in range(0, 50):
     batch_size = 512
     while i+batch_size < len(train_in):
         ein = emotion_in[i:i+batch_size].reshape(batch_size, 1)
-        trin = tin[i:i+batch_size]
+        trin = train_in[i:i+batch_size]
         tout = np.zeros((batch_size, numwords))
         c = 0
         for t in train_out[i:i+batch_size]:
             tout[c][t] = 1
             c += 1
-        CE += graph.train_on_batch({'emotion_vector':ein, 'word_input':trin, 'output':tout})
+        CE += graph.train_on_batch({'emotion_vector':ein, 'word_input':trin, 'output':tout})[0]
         i += batch_size
         j += 1
         print 'Percent Done: ', float(i)/len(train_in), "CE: ", CE/j
