@@ -22,18 +22,20 @@ numwords = np.max(train_in)+1
 graph = Graph()
 
 graph.add_input(name='emotion_vector', input_shape=((1,)), dtype='int')
-graph.add_node(Embedding(4096, 2, input_length=1), name='emotion_embeddings', input='emotion_vector')
+graph.add_node(Embedding(10000, 2, input_length=1), name='emotion_embeddings', input='emotion_vector')
 graph.add_node(Flatten(), input='emotion_embeddings', name='flatemot')
 
 
 graph.add_input(name='word_input', input_shape=((16,)), dtype='int')
-graph.add_node(Embedding(numwords, 2048, input_length=16), input='word_input', name='word_embeddings')
+graph.add_node(Embedding(numwords, 1024, input_length=16), input='word_input', name='word_embeddings')
 graph.add_node(Flatten(), input='word_embeddings', name='flatwords')
-graph.add_node(Dense(1024), inputs=['flatemot', 'flatwords'], name='dense1')
+
+graph.add_node(Dense(512), inputs=['flatemot', 'flatwords'], name='dense1')
 graph.add_node(Activation('relu'), input='dense1', name='activation2')
 
-graph.add_node(Dense(512), input='activation2', name='a22')
+graph.add_node(Dense(256), input='activation2', name='a22')
 graph.add_node(Activation('relu'), input='a22', name='a22a')
+
 graph.add_node(Dense(numwords), input='a22a', name='out')
 graph.add_node(Activation('softmax'), input='out', name='softmax')
 graph.add_output(name='output', input='softmax')
