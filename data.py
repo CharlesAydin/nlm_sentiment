@@ -2,6 +2,8 @@ import os
 import re
 import numpy as np
 
+"""Class to pre process the aclimdb dataset."""
+
 class PreProcessor():
 	
 	def __init__(self, path_to_aclimdb):
@@ -97,4 +99,6 @@ if __name__ == "__main__":
 	p.get_word_freq()
 	p.make_word_ind()
 	p.make_grams()
-	print p.train_in[:10]
+	np.save('training_data/doc_in', p.doc_id)
+	np.save('training_data/train_in', p.train_in)
+	np.save('training_data/train_out', p.train_out)
