@@ -60,4 +60,4 @@ for e in range(0, 50):
         i += batch_size
         j += 1
         print 'Percent Done: ', float(i)/len(train_in), "CE: ", CE/j
-    model.save_weights(str(e)+'a')
+    graph.save_weights(str(e)+'a')
