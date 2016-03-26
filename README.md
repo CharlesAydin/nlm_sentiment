@@ -1,2 +1,2 @@
 # nlm_sentiment
-Neural language model for sentiment
+Neural language model for sentiment analysis
