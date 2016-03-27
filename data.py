@@ -38,7 +38,7 @@ class PreProcessor():
 				else:
 					self.word_freq[word] = 1
 
-		for doc in self.pos_text:
+		for doc in self.neg_text:
 			for word in doc:
 				if not self.word_freq.get(word) is None:
 					self.word_freq[word] += 1
