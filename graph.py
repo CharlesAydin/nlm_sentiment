@@ -40,7 +40,7 @@ graph.add_node(Dense(numwords), input='a22a', name='out')
 graph.add_node(Activation('softmax'), input='out', name='softmax')
 graph.add_output(name='output', input='softmax')
 
-a = Adam(lr=0.00001)
+a = Adam(lr=0.0001)
 graph.compile(optimizer=a, loss={'output':'categorical_crossentropy'})
 
 for e in range(0, 50):
