@@ -22,7 +22,7 @@ numwords = np.max(train_in)+1
 graph = Graph()
 
 graph.add_input(name='emotion_vector', input_shape=((1,)), dtype='int')
-graph.add_node(Embedding(4096, 2, input_length=1), name='emotion_embeddings', input='emotion_vector')
+graph.add_node(Embedding(8096, 2, input_length=1), name='emotion_embeddings', input='emotion_vector')
 graph.add_node(Flatten(), input='emotion_embeddings', name='flatemot')
 
 
