@@ -30,17 +30,17 @@ graph.add_input(name='word_input', input_shape=((16,)), dtype='int')
 graph.add_node(Embedding(numwords, 1024, input_length=16), input='word_input', name='word_embeddings')
 graph.add_node(Flatten(), input='word_embeddings', name='flatwords')
 
-graph.add_node(Dense(512), inputs=['flatemot', 'flatwords'], name='dense1')
+graph.add_node(Dense(1024), inputs=['flatemot', 'flatwords'], name='dense1')
 graph.add_node(Activation('relu'), input='dense1', name='activation2')
 
-graph.add_node(Dense(256), input='activation2', name='a22')
+graph.add_node(Dense(512), input='activation2', name='a22')
 graph.add_node(Activation('relu'), input='a22', name='a22a')
 
 graph.add_node(Dense(numwords), input='a22a', name='out')
 graph.add_node(Activation('softmax'), input='out', name='softmax')
 graph.add_output(name='output', input='softmax')
 
-a = Adam(lr=0.001)
+a = Adam(lr=0.0001)
 graph.compile(optimizer=a, loss={'output':'categorical_crossentropy'})
 
 for e in range(0, 50):
