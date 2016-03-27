@@ -45,7 +45,7 @@ class PreProcessor():
 				else:
 					self.word_freq[word] = 1
 
-	def make_word_ind(self, min_freq = 25):
+	def make_word_ind(self, min_freq = 35):
 		self.word_ind['<unk>'] = 0
 		self.word_ind['<card>'] = 1
 		i = 2
