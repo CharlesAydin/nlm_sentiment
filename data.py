@@ -102,3 +102,5 @@ if __name__ == "__main__":
 	np.save('training_data/doc_in', p.doc_id)
 	np.save('training_data/train_in', p.train_in)
 	np.save('training_data/train_out', p.train_out)
+	import cPickle
+	cPickle.dump(p.word_ind, open('training_data/word_ind', 'w'))
