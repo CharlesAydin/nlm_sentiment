@@ -30,10 +30,10 @@ graph.add_input(name='word_input', input_shape=((16,)), dtype='int')
 graph.add_node(Embedding(numwords, 1024, input_length=16), input='word_input', name='word_embeddings')
 graph.add_node(Flatten(), input='word_embeddings', name='flatwords')
 
-graph.add_node(Dense(1024), inputs=['flatemot', 'flatwords'], name='dense1')
+graph.add_node(Dense(2048), inputs=['flatemot', 'flatwords'], name='dense1')
 graph.add_node(Activation('relu'), input='dense1', name='activation2')
 
-graph.add_node(Dense(512), input='activation2', name='a22')
+graph.add_node(Dense(1024), input='activation2', name='a22')
 graph.add_node(Activation('relu'), input='a22', name='a22a')
 
 graph.add_node(Dense(numwords), input='a22a', name='out')
