@@ -74,7 +74,7 @@ class PreProcessor():
 	def num_there(self, s):
 	    return any(i.isdigit() for i in s)
 
-	def make_grams(self, gram_length = 17):
+	def make_grams(self, gram_length = 9):
 		din = []
 		tin = []
 		tout = []

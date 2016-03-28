@@ -26,8 +26,8 @@ graph.add_node(Embedding(8096, 2, input_length=1), name='emotion_embeddings', in
 graph.add_node(Flatten(), input='emotion_embeddings', name='flatemot')
 
 
-graph.add_input(name='word_input', input_shape=((16,)), dtype='int')
-graph.add_node(Embedding(numwords, 1024, input_length=16), input='word_input', name='word_embeddings')
+graph.add_input(name='word_input', input_shape=((8,)), dtype='int')
+graph.add_node(Embedding(numwords, 1024, input_length=8), input='word_input', name='word_embeddings')
 graph.add_node(Flatten(), input='word_embeddings', name='flatwords')
 
 graph.add_node(Dense(512), inputs=['flatemot', 'flatwords'], name='dense1')
